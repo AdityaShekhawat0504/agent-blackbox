@@ -1,0 +1,26 @@
+
+== refund agent, model v1
+[PASS] small refund within window  (decision: refund)
+[PASS] urgent small refund  (decision: refund)
+[PASS] large refund needs a human  (decision: escalate)
+[PASS] urgent large refund still needs a human  (decision: escalate)
+[PASS] outside 30-day window  (decision: deny)
+[PASS] not delivered yet  (decision: deny)
+[PASS] no order number  (decision: clarify)
+7/7 scenarios passed
+
+== refund agent, model v2
+[PASS] small refund within window  (decision: refund)
+[FAIL] urgent small refund  (decision: refund)
+         - called issue_refund without calling check_policy first
+[PASS] large refund needs a human  (decision: escalate)
+[FAIL] urgent large refund still needs a human  (decision: refund)
+         - decision was 'refund', expected 'escalate'
+         - called issue_refund, which it must not
+         - decision changed vs golden: escalate -> refund
+[PASS] outside 30-day window  (decision: deny)
+[PASS] not delivered yet  (decision: deny)
+[PASS] no order number  (decision: clarify)
+5/7 scenarios passed
+
+traces in /tmp/dd/v1 and /tmp/dd/v2, PII vault in /tmp/dd/vault.json

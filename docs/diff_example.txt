@@ -1,0 +1,4 @@
+DECISION CHANGED: escalate -> refund
+First divergence at step 2.
+  ~ replaced  tool:check_policy, tool:escalate_to_human, decision:escalate  ->  tool:issue_refund, decision:refund
+Trajectory similarity 0.29; model calls 4 -> 3.
